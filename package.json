@@ -1,0 +1,19 @@
+{
+  "name": "ssas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SSAS — Smart Schedule & Accountability System. This package.json covers only the server-side automation scripts (server-*.js): reminder engine, accountability engine, Telegram bot, email, Google OAuth exchange — all run as free GitHub Actions scheduled jobs, never as billed Cloud Functions. The frontend PWA (app-*.js, index.html) is plain ES modules with no build step and no dependency on this package.json.",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "reminders": "node server-reminder-engine.js",
+    "accountability": "node server-accountability-engine.js",
+    "telegram-bot": "node server-telegram-bot.js",
+    "test": "node --test *.test.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.3.1",
+    "nodemailer": "^6.9.14",
+    "googleapis": "^140.0.1"
+  }
+}

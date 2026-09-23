@@ -1,0 +1,27 @@
+# Secrets — never commit these
+.env
+.env.*
+!.env.example
+*serviceAccount*.json
+*service-account*.json
+firebase-adminsdk-*.json
+
+# Dependencies
+node_modules/
+scripts/node_modules/
+
+# Firebase local state
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
