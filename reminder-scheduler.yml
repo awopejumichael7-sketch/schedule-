@@ -1,0 +1,52 @@
+name: SSAS Reminder Engine
+
+# Runs every 5 minutes — the free replacement for Firebase's paid
+# (Blaze-only) scheduled Cloud Functions / Cloud Scheduler (see
+# ARCHITECTURE.md). Uses GitHub's free 2,000 CI minutes/month (GitHub
+# Free plan), well within budget: 5-minute cadence × a few seconds per
+# run is a tiny fraction of that allowance.
+#
+# NOTE: GitHub's own cron scheduler can delay triggers by a few minutes
+# under load — the reminder engine is deliberately tolerant of this (see
+# STALE_THRESHOLD_MINUTES in server-reminder-engine.js).
+#
+# NOTE ON FOLDER LAYOUT: every other SSAS file lives in one flat project
+# folder (see README.md). This workflow file is the sole, unavoidable
+# exception — GitHub Actions only ever discovers workflows at the literal
+# path .github/workflows/*.yml relative to the repository root; there is
+# no configuration option to point it elsewhere. Everything this workflow
+# runs (package.json, server-*.js) still lives at the repository root.
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {} # allows manual "Run workflow" from the Actions tab for testing
+
+permissions:
+  contents: read
+
+jobs:
+  run-reminder-engine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm install --omit=dev
+
+      - name: Run reminder engine
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+        run: node server-reminder-engine.js
