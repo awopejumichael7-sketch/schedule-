@@ -7,12 +7,12 @@
 // See DEPLOYMENT.md §2.
 
 export const firebaseConfig = {
-  apiKey: "REPLACE_WITH_YOUR_FIREBASE_API_KEY",
-  authDomain: "REPLACE_WITH_YOUR_PROJECT.firebaseapp.com",
-  projectId: "REPLACE_WITH_YOUR_PROJECT_ID",
-  storageBucket: "REPLACE_WITH_YOUR_PROJECT.appspot.com",
-  messagingSenderId: "REPLACE_WITH_YOUR_SENDER_ID",
-  appId: "REPLACE_WITH_YOUR_APP_ID",
+  apiKey: "AIzaSyASpQ_H_wDS-0yHdOlF0PQsfNz2qagfBtk",
+    authDomain: "sass-fdea0.firebaseapp.com",
+    projectId: "sass-fdea0",
+    storageBucket: "sass-fdea0.firebasestorage.app",
+    messagingSenderId: "594232822730",
+    appId: "1:594232822730:web:ffa02a88bc33c85aa71d33",
 };
 
 // Google OAuth Client ID (public — the secret half lives server-side only,
