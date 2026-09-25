@@ -17,7 +17,7 @@ export const firebaseConfig = {
 
 // Google OAuth Client ID (public — the secret half lives server-side only,
 // see GOOGLE-CALENDAR.md).
-export const GOOGLE_OAUTH_CLIENT_ID = "REPLACE_WITH_YOUR_GOOGLE_OAUTH_CLIENT_ID.apps.googleusercontent.com";
+export const GOOGLE_OAUTH_CLIENT_ID = "197841940095-709r2jdpj47j2l9f4msf2hur5k9s6s94.apps.googleusercontent.com";
 export const GOOGLE_CALENDAR_SCOPE = "https://www.googleapis.com/auth/calendar.events";
 
 // FCM Web Push VAPID key (public key half — generate free in Firebase
